@@ -1,4 +1,5 @@
-(function($) {
+//(function($) {
+(function ($, Drupal) {
   Drupal.behaviors.ssGooglePlus = {
     attach : function(context, settings) {
       $('body', context).bind('shareSelectionShow', function(event) {
@@ -6,4 +7,5 @@
       });
     }
   };
-})(jQuery);
+//})(jQuery);
+})(jQuery, Drupal);

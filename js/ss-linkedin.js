@@ -1,4 +1,5 @@
-(function($) {
+//(function($) {
+(function ($, Drupal) {
   Drupal.shareSelection = Drupal.shareSelection || {};
 
   Drupal.shareSelection.onSuccessLinkedin = function(data) {
@@ -73,4 +74,5 @@
       });
     }
   };
-})(jQuery);
+//})(jQuery);
+})(jQuery, Drupal);

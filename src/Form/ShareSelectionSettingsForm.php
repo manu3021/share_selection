@@ -102,7 +102,7 @@ class ShareSelectionSettingsForm extends ConfigFormBase {
     );
     $form['by_content']['share_selection_content_types'] = array(
       '#type' => 'checkboxes',
-      '#options' => $content_types_options,
+      '#options' => $content_types_options_default,
       '#title' => t('Content types'),
       '#description' => t('Content types where links will be shown'),
       '#default_value' => $content_types_options_default,

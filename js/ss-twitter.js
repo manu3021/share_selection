@@ -1,4 +1,5 @@
-(function($) {
+//(function($) {
+(function ($, Drupal) {
   Drupal.behaviors.ssTwitter = {
     attach : function(context, settings) {
       $('#share-selection-twitter', context).mousedown(function(e) {
@@ -15,4 +16,5 @@
       });
     }
   };
-})(jQuery);
+//})(jQuery);
+})(jQuery, Drupal);

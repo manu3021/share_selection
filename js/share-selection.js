@@ -1,4 +1,5 @@
-(function($) {
+//(function($) {
+(function ($, Drupal) {
   Drupal.shareSelection = Drupal.shareSelection || {};
   Drupal.shareSelection.selectedText = null;
   Drupal.shareSelection.dialogOpen = false;
@@ -74,4 +75,5 @@
       });
     }
   };
-})(jQuery);
+//})(jQuery);
+})(jQuery, Drupal);
