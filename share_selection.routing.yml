@@ -1,7 +1,14 @@
 share_selection.configuration_form:
-  path: 'admin/config/services/share-selection'
+  path: '/admin/config/services/share-selection'
   defaults:
     _form: '\Drupal\share_selection\Form\ShareSelectionSettingsForm'
     _title: 'Share Selection settings'
+  requirements:
+    _permission: 'administer share selection'
+share_selection.config_services_form:
+  path: '/admin/config/services/share-selection/services'
+  defaults:
+    _form: '\Drupal\share_selection\Form\ShareSelectionConfigServicesForm'
+    _title: 'Services'
   requirements:
     _permission: 'administer share selection'

@@ -1,0 +1,5 @@
+share_selection.configuration_form:
+  route_name: share_selection.configuration_form
+  title: 'Share selection'
+  description: 'Share selection config.'
+  parent: system.admin_config_services
