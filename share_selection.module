@@ -159,7 +159,16 @@ function share_selection_theme() {
  */
 function share_selection_get_links($services = NULL, $reset = FALSE) {
   $links = &drupal_static(__FUNCTION__, NULL);
-
+  if (!isset($links) || $reset) {
+    $links = array();
+    foreach (\Drupal::moduleHandler()->getImplementations('share_selection_links') as $module) {
+      $module_links = \Drupal::moduleHandler()->invoke($module, 'share_selection_links');
+      foreach ($module_links as $name => $link) {
+        $link['module'] = $module;
+        $links[$name] = $link;
+      }
+    }
+  }
 
   // If desired, return only the wanted services.
   if (isset($services)) {

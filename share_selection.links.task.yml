@@ -1,0 +1,9 @@
+share_selection.configuration_form:
+  route_name: share_selection.configuration_form
+  title: 'General Settings'
+  weight: -10
+  base_route: share_selection.configuration_form
+share_selection.config_services_form:
+  route_name: share_selection.config_services_form
+  title: Services
+  base_route: share_selection.configuration_form
