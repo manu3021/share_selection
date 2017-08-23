@@ -86,7 +86,7 @@ class ShareSelectionSettingsForm extends ConfigFormBase {
       '#options' => $share_by,
       '#title' => t('Show by paths or content types'),
       '#description' => t('Select how you want to control the places to share selection'),
-     // '#default_value' => variable_get('share_selection_paths_or_content', 'paths'),
+     '#default_value' => \Drupal::config('share_selection.settings')->get('share_selection_paths_or_content'),
     );
     // Share by content options.
     $form['by_content'] = array(
@@ -105,7 +105,7 @@ class ShareSelectionSettingsForm extends ConfigFormBase {
       '#options' => $content_types_options_default,
       '#title' => t('Content types'),
       '#description' => t('Content types where links will be shown'),
-      '#default_value' => $content_types_options_default,
+      '#default_value' => \Drupal::config('share_selection.settings')->get('share_selection_content_types'),
     );
     // Share by paths options.
     $paths_behaviors = array(
@@ -123,18 +123,21 @@ class ShareSelectionSettingsForm extends ConfigFormBase {
         ),
       ),
     );
+
     $form['by_paths']['share_selection_paths_behavior'] = array(
       '#type' => 'radios',
       '#options' => $paths_behaviors,
       '#title' => t('Show on specific pages'),
-     // '#default_value' => variable_get('share_selection_paths_behavior', 0),
+      '#default_value' => \Drupal::config('share_selection.settings')->get('share_selection_paths_behavior'),
     );
+
     $form['by_paths']['share_selection_paths'] = array(
       '#type' => 'textarea',
-      //'#default_value' => variable_get('share_selection_paths', $exclude_paths),
       '#description' => t("Specify pages by using their paths. Enter one path per line. The '*' character is a wildcard. Example paths are %blog for the blog page and %blog-wildcard for every personal blog. %front is the front page.", array('%blog' => 'blog', '%blog-wildcard' => 'blog/*', '%front' => '<front>')),
+      '#default_value' => \Drupal::config('share_selection.settings')->get('share_selection_paths'),
     );
     // Exclude roles.
+
     $user_roles = array_keys(user_roles());
     $form['exclude_roles'] = array(
       '#type' => 'fieldset',
@@ -142,35 +145,40 @@ class ShareSelectionSettingsForm extends ConfigFormBase {
       '#collapsed' => FALSE,
       '#title' => t('Exclude Roles'),
     );
+
     $form['exclude_roles']['share_selection_exclude_roles'] = array(
       '#type' => 'checkboxes',
       '#options' => $user_roles,
       '#description' => t("The selected roles won't see the Share Selection buttons."),
-     // '#default_value' => variable_get('share_selection_exclude_roles', array()),
     );
+
     // Display options.
     $display_options = array(
       'image' => t('Only image'),
       'text' => t('Only text'),
       'image_and_text' => t('Image and text'),
     );
+
     $form['display_options'] = array(
       '#type' => 'fieldset',
       '#collapsible' => TRUE,
       '#collapsed' => FALSE,
       '#title' => t('Styling options'),
     );
+
     $form['display_options']['share_selection_images_replacement_path'] = array(
       '#type' => 'textfield',
       '#title' => t('Images replacement path'),
-     // '#default_value' => variable_get('share_selection_images_replacement_path', 'sites/default/files/share-selection'),
+    '#default_value' => \Drupal::config('share_selection.settings')->get('share_selection_images_replacement_path'),
     );
+
     $form['display_options']['share_selection_display_style'] = array(
       '#type' => 'select',
       '#title' => t('Style'),
       '#options' => $display_options,
-   //   '#default_value' => variable_get('share_selection_display_style', 'image'),
+      '#default_value' => \Drupal::config('share_selection.settings')->get('share_selection_display_style'),
     );
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -186,8 +194,7 @@ class ShareSelectionSettingsForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state){
     $values = $form_state->getValues();
-    $share_selection_settings = $this->config('share_selection.settings');
-
+    $share_selection_settings = $this->config('share_selection.settings');   
     $share_selection_settings->set('share_selection_paths_or_content', $values['share_selection_paths_or_content'])
       ->set('share_selection_content_types', $values['share_selection_content_types'])
       ->set('share_selection_paths_behavior', $values['share_selection_paths_behavior'])
