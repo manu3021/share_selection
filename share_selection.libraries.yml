@@ -6,7 +6,8 @@ drupal.shareselection:
     js/ss-linkedin.js: { weight: -2 }
     js/ss-twitter.js: { weight: -2 }
   css:
-    css/share-selection.css : {weight: -1}
+    theme:
+      css/share-selection.css : {weight: -1}
 
   dependencies:
     - core/drupal.dialog

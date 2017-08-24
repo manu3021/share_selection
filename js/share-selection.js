@@ -43,7 +43,7 @@
           }, 1000);
         });
       });
-      $('body', context).once('share-selection', function() {
+      // $('body', context).once('share-selection', function() {
         $('#ss-dialog-wrapper').on('dialogclose', function(event, ui) {
           Drupal.shareSelection.dialogOpen = false;
         });
@@ -71,7 +71,7 @@
               $('body').trigger('shareSelectionShow');
             }
           };
-        });
+        // });
       });
     }
   };
